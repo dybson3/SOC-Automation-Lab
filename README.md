@@ -149,15 +149,48 @@ With Wazuh and TheHive in place, I began generating **Telemetry** data from the 
 
 ![Telemetry Configuration](https://github.com/user-attachments/assets/d6d97cb1-562b-4d5b-ae89-6745fc438cb5)
 
+I procedeed to the process of installing **Mimikatz**. To be able to use it I had to exclude Downloads folder from my Windows 10 firewall.
+
+![obraz](https://github.com/user-attachments/assets/3f98785e-1f7f-4c81-875c-1eb7a94eb800)
+
+
 Next, I used **Mimikatz**, a popular post-exploitation tool, to simulate an attack by extracting credentials from the machine. By doing this, I could test the detection capabilities of the entire setup, ensuring Wazuh would raise alerts when malicious activity occurred.
 
 ![Mimikatz Installed](https://github.com/user-attachments/assets/2501781e-69b1-49ef-b0dd-104682d6d3ad)
 
-I configured **Filebeat** to handle the flow of logs, creating index patterns to organize and filter data, ensuring the right information was available for further analysis. As expected, Wazuh successfully detected the use of Mimikatz.
+Launching **Mimikatz**:
 
-![Wazuh Detected Mimikatz](https://github.com/user-attachments/assets/12832ea0-c1aa-46b2-a92d-d8405c31c067)
+![obraz](https://github.com/user-attachments/assets/8898f151-7fc9-4ba3-b657-8aefe674770c)
 
-Finally, I added custom rules to **Wazuh**'s `local_rules` to fine-tune the alerting mechanism. Custom rules allow for more granular control over the types of alerts generated and their severity levels, helping to focus on critical incidents.
+After that I changed the configuration of **filebeat** file to be able to receive alerts. I changed the "enabled" option from false to true.
+
+![obraz](https://github.com/user-attachments/assets/c56f61f2-7d62-428a-a713-f00af051f52f)
+
+Next in **Wazuh** dashboard I created index pattern to collect archived logs:
+
+![obraz](https://github.com/user-attachments/assets/b56f0e21-4df9-426c-af4a-53b7f1e2f73e)
+
+As we can see they have shown up (wazuh-archives):
+
+![obraz](https://github.com/user-attachments/assets/843f906e-02b4-4dee-9afe-b79a328faa23)
+
+With this setup all the logs were then collected in archives folder so I was able to search through them when I needed. As we can see in the archives folder I found logs with **Mimikatz** activity:
+
+![obraz](https://github.com/user-attachments/assets/2280e9a9-169f-474d-a644-c0b89702f3f6)
+
+Then I moved on to creating new rule especially for **Mimikatz**. 
+
+![obraz](https://github.com/user-attachments/assets/fd1d8e6a-e996-4adc-952f-537f7088794d)
+
+I modified the **local_rules** file to add my rule. Here's the rule I created:
+
+![obraz](https://github.com/user-attachments/assets/649a227b-57e7-4bd4-b050-6600a901d1bc)
+
+The **rule_id** for custom rules need to be at least 100 000. **Level 15** is the highest level for alerts.
+
+As we can see the rule works and **Wazuh** used it properly:
+
+![obraz](https://github.com/user-attachments/assets/95fc515e-d800-4970-bd93-aa07321f1dc7)
 
 ---
 
