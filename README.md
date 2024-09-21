@@ -63,34 +63,84 @@ Next, a **Firewall** was added to secure the network. Only trusted IP addresses,
 
 ![Firewall with Whitelisted IP](https://github.com/user-attachments/assets/ba73946e-c969-4689-b5f3-5ab9421952df)
 
+I immediately added Firewall to protect my **Wazuh** virtual machine:
+
+![obraz](https://github.com/user-attachments/assets/5c0d8658-e8de-43a2-8997-a7bdef1838aa)
+
+
 ---
 
 ### 4. Wazuh Setup and Configuration
+Firstly I connected to my **Wazuh** machine using Powershell:
+
+![obraz](https://github.com/user-attachments/assets/21b0edb0-cf3c-49b4-959b-270c9a54618d)
+
+
 With the firewall set up, I proceeded with **Wazuh** installation. Wazuh is a powerful open-source security monitoring tool that provides comprehensive threat detection and response capabilities.
 
 ![Wazuh Installed](https://github.com/user-attachments/assets/ea002735-0ea1-4f1c-bb73-c78cae5f960a)
 
-After the installation, I logged into Wazuh using **PowerShell**, confirming that the system was running properly and ready for further configurations.
+After the installation, I was able to log into **Wazuh** dashboard:
 
-![Wazuh PowerShell Login](https://github.com/user-attachments/assets/d3171373-a80e-485a-95f3-973b61a642e3)
-
-I also adjusted Wazuh's configuration to tailor it for Windows telemetry, ensuring we captured relevant security logs, such as Sysmon logs for deep process and network monitoring.
+![obraz](https://github.com/user-attachments/assets/82ac90f2-0d52-48ce-a57b-e296b4a1e3e5)
 
 ---
 
 ### 5. TheHive Installation and Setup
-The next part of the project focused on installing and configuring **TheHive**, an incident response platform. This involved setting up a new VM and securing it with a firewall.
+The next part of the project focused on installing and configuring **TheHive**, an incident response platform. This involved setting up a new VM.
 
 ![TheHive VM](https://github.com/user-attachments/assets/4ff9f178-5eb3-4c3d-8634-bdfa8f66b73d)
+
+Same as I did with the **Wazuh** I added TheHive to my **Firewall**:
+
+![obraz](https://github.com/user-attachments/assets/1919c327-a4b2-4971-ac53-8584ca577526)
 
 Once the VM was in place, I installed four essential components: **Java**, **Cassandra**, **ElasticSearch**, and **TheHive** itself. These are foundational services that TheHive relies on to store and retrieve data, as well as process alerts.
 
 ![Everything Installed](https://github.com/user-attachments/assets/51f124fb-8188-4681-988e-ac383b11538a)
 
-**Cassandra** was configured first, where I set the cluster name, listen address, and other critical parameters. Then, I set up **ElasticSearch** to store and search through the logs. Lastly, I configured **TheHive**, ensuring it had the necessary permissions and was connected to Cassandra and ElasticSearch.
+**Cassandra** was configured first, where I set the cluster name, listen address, and other critical parameters. **Cassandra** is an open source NoSQL distributed database trusted by thousands of companies for scalability and high availability without compromising performance.
 
-![Cassandra Running](https://github.com/user-attachments/assets/571817ce-38ac-4c9f-bdd4-0a054f1dc9d3)
-![ElasticSearch Running](https://github.com/user-attachments/assets/f425c744-d929-49c6-815f-67e117af2968)
+![obraz](https://github.com/user-attachments/assets/6ff2411b-b420-4b64-a561-d2ca4ae01c4b)
+
+Now **Cassandra** is up and running.
+
+![obraz](https://github.com/user-attachments/assets/0d4fe741-f482-4780-85b9-2595b162a5e0)
+
+Now I procedeed to setting up **ElasticSearch** and things like cluster name, node name, networkhost for oup thehive ip and httport. **Elasticsearch** is a distributed, RESTful search and analytics engine, scalable data store, and vector database capable of addressing a growing number of use cases.
+
+![obraz](https://github.com/user-attachments/assets/1b0ac827-7e18-4511-9d68-99ca05056095)
+
+**ElasticSearch** is up and running.
+
+![obraz](https://github.com/user-attachments/assets/0642de24-84c1-45d2-a12a-1dff2f8f6181)
+
+**TheHive** configuration. Firstly I needed to change owners of thehive lib so it can work:
+
+![obraz](https://github.com/user-attachments/assets/f36e2b80-a69f-416b-8cbf-8e13c15e7f75)
+
+After this, I configured **thehive**. Hostname and cluster-name:
+
+![obraz](https://github.com/user-attachments/assets/fbbb6ff1-650f-4253-be75-7cd6db7d6bfe)
+
+I changed baseurl for our **thehive** url:
+
+![obraz](https://github.com/user-attachments/assets/5e2c791d-60be-40fd-b937-edbd506d8ff9)
+
+And additional knowledge:
+
+![obraz](https://github.com/user-attachments/assets/b2a8fda0-35c1-4f81-b8e9-8ce1d9295232)
+
+**Cortex** is used for enrichment and **Misp** it used as CTI (Cyber Threat Intelligence).
+
+**TheHive** is up and running:
+
+![obraz](https://github.com/user-attachments/assets/fd51a156-c952-4587-8bd5-2a2f13d6cffe)
+
+After this I was able to log into **TheHive** dashboard:
+
+![obraz](https://github.com/user-attachments/assets/3f6c1d30-9f80-4c8d-a740-5c988a217c72)
+
 
 ---
 
