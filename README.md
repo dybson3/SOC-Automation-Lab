@@ -27,6 +27,24 @@ This project demonstrates a comprehensive **cybersecurity monitoring and inciden
 - **[Mimikatz](https://github.com/gentilkiwi/mimikatz)**: Tool for simulating credential extraction attacks.
 - **[DigitalOcean](https://www.digitalocean.com/)**: Cloud hosting platform for virtual machines.
 - **Firewalls**: Securing VMs and controlling network traffic.
+  
+## Table of Contents
+
+1. [Project Introduction](#project-introduction)
+2. [Skills Learned](#skills-learned)
+3. [Tools Used](#tools-used)
+4. [Project Step-by-Step](#project-step-by-step)
+   1. [Architecture Design](#1-architecture-design)
+   2. [Installation of Sysmon on Windows 10](#2-installation-of-sysmon-on-windows-10)
+   3. [Virtual Machines and Firewall Configuration](#3-virtual-machines-and-firewall-configuration)
+   4. [Wazuh Setup and Configuration](#4-wazuh-setup-and-configuration)
+   5. [TheHive Installation and Setup](#5-thehive-installation-and-setup)
+   6. [Generating Telemetry and Setting Alerts](#6-generating-telemetry-and-setting-alerts)
+   7. [Automation with Shuffle](#7-automation-with-shuffle)
+   8. [Incident Response](#8-incident-response)
+5. [Sources](#sources)
+
+
 
 ## Project Step-by-Step
 
