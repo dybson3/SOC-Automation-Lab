@@ -12,11 +12,9 @@ This project demonstrates a comprehensive **cybersecurity monitoring and inciden
 - 🔒 **Firewall Configuration** (Securing VMs with custom rules)
 - 📝 **Sysmon Configuration** (Windows system event logging)
 - ⚙️ **Wazuh Installation and Configuration** (Custom rules, log monitoring)
-- 📊 **Telemetry and Log Analysis** (Security incident detection)
 - 🚨 **Incident Response Setup** (Using TheHive, Cortex, MISP for managing security alerts)
 - 🤖 **Automation with Shuffle** (Triggering automatic responses like IP blocking)
 - 🔗 **Security Tool Integration** (Wazuh, TheHive, Sysmon, Shuffle in a unified system)
-- 🛡️ **Threat Simulation** (Using Mimikatz to simulate attacks and test security defenses)
 - 📜 **Custom Rule Creation** (Writing rules in Wazuh for specific alerts)
 - ✉️ **Email Notification Setup** (Automated alert emails for security incidents)
 
@@ -25,10 +23,6 @@ This project demonstrates a comprehensive **cybersecurity monitoring and inciden
 - **[Wazuh](https://wazuh.com/)**: Security monitoring and log analysis platform.
 - **[Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)**: Windows system activity monitoring tool.
 - **[TheHive](https://thehive-project.org/)**: Incident response and threat management platform.
-- **[Cassandra](https://cassandra.apache.org/)**: Database for TheHive's back-end storage.
-- **[ElasticSearch](https://www.elastic.co/)**: Log and event data search engine.
-- **[Cortex](https://www.cortex-cert.org/)**: Automated enrichment of security events.
-- **[MISP](https://www.misp-project.org/)**: Malware Information Sharing Platform for threat intelligence.
 - **[Shuffle](https://shuffler.io/)**: Security orchestration and automation platform.
 - **[Mimikatz](https://github.com/gentilkiwi/mimikatz)**: Tool for simulating credential extraction attacks.
 - **[DigitalOcean](https://www.digitalocean.com/)**: Cloud hosting platform for virtual machines.
@@ -275,3 +269,14 @@ I received an email from the **Shuffle**:
 ![obraz](https://github.com/user-attachments/assets/0ad58839-3aa8-41b8-8071-77f5022bb7f1)
 
 As we can see our rule was added to **iptables** successfully!
+
+This SOC Automation Lab project demonstrates the implementation of a robust, automated cybersecurity monitoring and incident response system using open-source tools. Key components include Wazuh for log monitoring and analysis, Sysmon for detailed system event logging, and TheHive for incident management. Shuffle was integrated to automate responses, such as blocking malicious IPs and sending alerts.
+
+The project involved setting up virtual machines, configuring firewalls, and fine-tuning Wazuh and TheHive for real-time telemetry and alerts. Custom rules were created in Wazuh to detect simulated attacks, and Shuffle workflows were developed to automate incident responses. Additionally, Cortex and MISP were integrated for threat intelligence and event enrichment, demonstrating a cohesive security framework for detecting and responding to threats in real time.
+
+## Sources:
+
+- [Wazuh Documentation](https://documentation.wazuh.com/current/index.html)
+- [TheHive Documentation](https://docs.strangebee.com/)
+- [Shuffle Documentation](https://shuffler.io/docs/about)
+- [Mydfir Channel](https://www.youtube.com/@MyDFIR)
