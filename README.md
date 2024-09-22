@@ -194,17 +194,84 @@ As we can see the rule works and **Wazuh** used it properly:
 
 ---
 
-### 7. Automation with Shuffle and Active Response
-The final stage of the project involved integrating **Shuffle**, an automation platform. Shuffle connects Wazuh with other tools, enabling automated responses to security events. 
+### 7. Automation with Shuffle 
+This stage of the project involved integrating **Shuffle**, an automation platform. Shuffle connects Wazuh with other tools, enabling automated responses to security events. 
 
 ![Shuffle Workflow](https://github.com/user-attachments/assets/9acbfe66-356d-4759-8290-a37ed8545479)
 
-By connecting Wazuh alerts to **TheHive** through Shuffle, I created workflows where detected threats would automatically trigger incident creation in TheHive. I further enriched these incidents by integrating **VirusTotal** lookups for hash values and automating responses like blocking IPs through firewall rules.
+Next thing to do was adding a note about shuffle in our **Wazuh** Manager in the **ossec.conf** file.
 
-![Alert in Shuffle](https://github.com/user-attachments/assets/856f02e1-87f0-445d-85c2-5956659e517c)
+![obraz](https://github.com/user-attachments/assets/7dc9dbcf-7b1c-4554-bbd2-f7463fcd41b3)
 
-Finally, I added an **active response** capability in Wazuh, allowing the system to block malicious IPs automatically. This functionality proved successful, as Wazuh issued commands to the firewall, which blocked traffic from unwanted sources.
+As we can see now in our **Shuffle** workflow we can now see events from **Wazuh**.
 
-![IP Blocked](https://github.com/user-attachments/assets/f5426e3a-729c-4df0-bff6-63a77bc7b21e)
+![obraz](https://github.com/user-attachments/assets/add60b5f-bd56-4ba9-8806-b3cfad390b80)
 
-With the email notification system set up, I received real-time alerts about the automation actions taking place, ensuring complete visibility into the automated defenses of the lab environment.
+After this I moved on to adding **Virus Total** to my environment. I created regex rules to send the hash to **Virus Total** so it can check the file.
+
+![obraz](https://github.com/user-attachments/assets/a42beb7a-194c-4831-9737-78da9972a73a)
+
+Then I added TheHive to my workflow.
+
+![obraz](https://github.com/user-attachments/assets/7a0f8fcf-2775-419f-bb2c-7c08449afac2)
+
+Configuring **TheHive** itself. I started with adding a new user that would be responsible for receiving alerts.
+
+![obraz](https://github.com/user-attachments/assets/bb2575a8-c88b-43a2-bc49-8fc02364b0bc)
+
+Then I had to allow **TheHive** in my firewall:
+
+![obraz](https://github.com/user-attachments/assets/4ca06097-ca36-43b2-b1e9-0552e8d762ab)
+
+Finally I was able to receive alerts in **TheHive**:
+
+![obraz](https://github.com/user-attachments/assets/0e93da68-77df-4f95-ae99-bb68dc6735bb)
+
+Another part was to get email notifications from **Shuffle** about potential threats. I added email app to my workflow.
+
+![obraz](https://github.com/user-attachments/assets/e8ce558b-b301-4878-9e4f-e340e274b1b2)
+
+Email was sent to me successfully!
+
+![obraz](https://github.com/user-attachments/assets/3694622a-d2e5-4098-b66b-0b3af300756e)
+
+### 7. Incident response
+The final stage of my project was to create response action. The objective was to receive email and being able to block ip address that was not friendly for me.
+
+I started with adding new Ubuntu machine to our virtual machines:
+
+![obraz](https://github.com/user-attachments/assets/7bd21143-a7e1-4b80-b2ad-acd97c9ca60c)
+
+I moved onto creating active response in the **ossec.conf** file:
+
+![obraz](https://github.com/user-attachments/assets/750fb5d0-576b-4835-948c-55939a64ec37)
+
+I added **firewall-drop0** argument to my **Wazuh** app on the **Shuffle**:
+
+![obraz](https://github.com/user-attachments/assets/81eb87e9-da13-4071-844f-343a9d5e3b77)
+
+For testing purposes in the command box I used google DNS which is 8.8.8.8.
+
+![obraz](https://github.com/user-attachments/assets/d783f7d4-9516-4c21-a57d-8822966a109b)
+
+Now the pings to 8.8.8.8 stopped which means my rules worked:
+
+![obraz](https://github.com/user-attachments/assets/3a52ac94-2c83-4b71-b7d4-6a632a120113)
+
+I was able to see the blockage in **iptables**:
+
+![obraz](https://github.com/user-attachments/assets/b821a2d8-370c-428d-ac85-ab3a916a5e22)
+
+This is how my shuffle workflow looked like at that time:
+
+![obraz](https://github.com/user-attachments/assets/4ccb4dcd-7bd4-4d0f-ac40-203e874382f9)
+
+Now the last activity was to add the feature of blocking unwanted IP's.
+
+![obraz](https://github.com/user-attachments/assets/2c229f40-4451-4439-84cb-f92870f135ac)
+
+I received an email from the **Shuffle**:
+
+![obraz](https://github.com/user-attachments/assets/0ad58839-3aa8-41b8-8071-77f5022bb7f1)
+
+As we can see our rule was added to **iptables** successfully!
